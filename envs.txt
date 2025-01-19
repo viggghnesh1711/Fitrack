@@ -1,0 +1,6 @@
+MONGO_URI=mongodb+srv://fittrackgpt:ISVR02myXjorK0hq@cluster0.g8c3y.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+RESEND_API_KEY=re_JabznYjT_KTcuNKbFgZ3NdC4RRBkMVUf7
+GOOGLE_CLIENT_ID=1052193792996-e366t3j98d55i6afg1ior0tqrrd9runk.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=fittrackgpt
