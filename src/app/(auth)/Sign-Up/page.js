@@ -9,10 +9,10 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { motion } from "framer-motion";
 import toast, { Toaster } from 'react-hot-toast';
 import Verificationcode from '@/components/Verificationcode';
-
+import { useRouter } from 'next/navigation';
 
 const page = () => {
-
+  const router = useRouter
   const [gmail, setGmail] = useState(''); 
   const [showPassword, setShowPassword] = useState(false); 
   const [verificationSent, setVerificationSent] = useState(false);
@@ -37,6 +37,7 @@ const page = () => {
             if(result.stat){
               toast.success(result.message)
               setVerificationSent(true);
+
               console.log(gmail)
             }
             else{

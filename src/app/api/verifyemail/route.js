@@ -38,7 +38,8 @@ export async function POST(request){
                         email: checkuser.email,
                         password: hashedPassword,
                     });
-                    await creatingcookie(newUser.email)
+                    console.log("before",newUser.email)
+                    await creatingcookie({ email: newUser.email })
                     await UserVerification.deleteOne({ email: form.email });
             
                     return new Response(JSON.stringify({ message: "User created successfully.",stat:true }), {

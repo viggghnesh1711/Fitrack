@@ -18,7 +18,14 @@ const userSchema = mongoose.Schema({
     },
     height:{
         type:Number
-    }
+    },
+    typebody:{
+        type:String
+    },
+    exercises: [{ 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Exc' 
+    }]
 })
 
 const User = mongoose.models.User || mongoose.model('User',userSchema)

@@ -1,10 +1,12 @@
 import connectMongo from "@/lib/dbConnect";
 import User from "@/app/models/user";
 import bcrypt from 'bcryptjs';
+import { creatingcookie } from "@/utils/creatingcookie";
 
 export async function POST(request){
     try{
         const form = await request.json()
+        console.log(form.email)
         await connectMongo()
 
         const usercheck = await User.findOne({email:form.email})
@@ -22,6 +24,7 @@ export async function POST(request){
                 { status: 401 }
               );
             }
+            await creatingcookie({ email: form.email })
             return new Response(
               JSON.stringify({ message: "Logged in successfully",stat:true}),
               { status: 200 }
