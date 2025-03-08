@@ -43,6 +43,7 @@ export async function GET(request){
           }
 
           chartData.sort((a, b) => new Date(a.date) - new Date(b.date));
+          console.log("data is working here ")
 
           return new Response(JSON.stringify({message:"Data Fetched",chartData},{
             status:500

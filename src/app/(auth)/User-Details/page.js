@@ -60,7 +60,7 @@ const Page = () => {
     if(response.ok){
       const result = response.json()
       router.push('/Home')
-      toast.success(result.message)
+      toast.success("Everthings done")
     }
     else{
       const result = response.json()
