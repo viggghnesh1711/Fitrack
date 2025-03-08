@@ -31,7 +31,7 @@ const page = () => {
             if (response.ok) {
               const result = await response.json();
               if(result.stat){
-                toast.success("is it wokring")
+                toast.success("Logged in sucessfully")
                 router.push('/Home');
               }
               else{

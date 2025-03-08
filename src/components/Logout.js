@@ -14,7 +14,6 @@ const LogoutButton = () => {
         });
 
         if (response.ok) {
-          
             router.push('/Sign-In');
         } else {
             console.error('Logout failed');

@@ -16,6 +16,9 @@ export async function POST(request){
             })
         }
         else{
+            const ans = await UserVerfication.deleteMany({ email: form.email });
+            console.log(ans)
+
             const generateOTP = () => {
                 const otp = Math.floor(100000 + Math.random() * 900000);
                 return otp.toString(); 
