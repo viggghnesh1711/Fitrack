@@ -5,7 +5,7 @@ export function middleware(request) {
     const userEmail = request.cookies.get('userEmail')?.value; // Retrieve the userEmail cookie value
 
     // Define public paths that don't require authentication
-    const publicPaths = ['/Sign-In', '/Sign-Up'];
+    const publicPaths = ['/', '/Sign-In', '/Sign-Up']; // 👈 Added `/` to allow access
 
     // Check if the current path is a public path
     const isPublicPath = publicPaths.some((path) => pathname.startsWith(path));
