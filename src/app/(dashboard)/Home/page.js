@@ -5,6 +5,9 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Bottombar from "@/components/Bottombar";
 import { motion } from "framer-motion";
+import Chart from "@/components/Chart";
+import Link from "next/link";
+import Calorie from "@/components/Calorie"
 
 const Page = () => {
   const router = useRouter();
@@ -41,8 +44,9 @@ const Page = () => {
 
   return (
     <>
-      <div className="bg-stone-950 h-screen w-full px-5 py-5 flex flex-col gap-6 relative">
+      <div className="bg-stone-950 min-h-screen w-full px-5 py-5 flex flex-col gap-6 relative pb-32">
         
+        {/* Navbar */}
         <motion.div
           variants={itemVariants}
           initial="hidden"
@@ -52,23 +56,26 @@ const Page = () => {
         >
           <Navbar />
         </motion.div>
-        
-      
+              
+        {/* Chart */}
         <motion.div
           variants={itemVariants}
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.2 }}
-          className="shadow-lg shadow-stone-900 h-40 w-full rounded-2xl bg-stone-900"
-        ></motion.div>
-        
-    
+          className="shadow-lg shadow-stone-900 h-[250px] w-full rounded-2xl bg-stone-900" // Set specific height for the chart
+        >
+          <Chart />
+        </motion.div>
+      
+        {/* Calendar and Cards */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className=""
+          className="flex flex-col gap-5 mt-5"
         >
+          {/* Calendar */}
           <motion.div
             variants={itemVariants}
             className="rounded-2xl w-full bg-stone-900 text-stone-300 border-none shadow-lg shadow-stone-900"
@@ -86,22 +93,19 @@ const Page = () => {
             />
           </motion.div>
 
-          <motion.div className="flex gap-5 pt-5">
-            {/* Left Card */}
+                   
             <motion.div
               variants={itemVariants}
-              className="shadow-lg shadow-stone-900 h-44 w-full bg-stone-900 rounded-2xl"
-            ></motion.div>
-            {/* Right Card */}
-            <motion.div
-              variants={itemVariants}
-              className="shadow-lg shadow-stone-900 h-44 w-full bg-stone-900 rounded-2xl"
-            ></motion.div>
-          </motion.div>
+              className="shadow-lg shadow-stone-900 mt-5 w-full bg-stone-900 rounded-2xl"
+            >
+              
+                <Calorie/>
+            </motion.div>
+           
         </motion.div>
 
-        <div
-        >
+        {/* Bottom Bar */}
+        <div>
           <Bottombar />
         </div>
       </div>

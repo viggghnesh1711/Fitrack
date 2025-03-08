@@ -10,9 +10,9 @@ export async function GET(request){
 
         const userEmailCookie = cookieStore.get('userEmail');
         const user = await User.findOne({email:userEmailCookie.value})
+        const date = request.nextUrl.searchParams.get('date'); // Get the date parameter
 
-        const excs = await Exc.find({userId:user._id})
-        console.log("ans:",excs)
+        const excs = await Exc.find({userId:user._id,createdAt:date})
         return new Response(JSON.stringify({message:"it is working",excs}),{
             status:200
         })
