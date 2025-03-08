@@ -75,23 +75,19 @@ const Page = () => {
           animate="visible"
           className="flex flex-col gap-5 mt-5"
         >
-          {/* Calendar */}
           <motion.div
-            variants={itemVariants}
-            className="rounded-2xl w-full bg-stone-900 text-stone-300 border-none shadow-lg shadow-stone-900"
-          >
-            <Calendar
-              mode="single"
-              selected={dateOne}
-              onSelect={onDateSelect}
-              modifiersStyles={{
-                today: {
-                  backgroundColor: "gray",
-                  color: "black",
-                },
-              }}
-            />
-          </motion.div>
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2, type: "spring" } },
+      }}
+      initial="hidden"
+      animate="visible"
+      className="flex justify-center w-full"
+    >
+      <div className="rounded-2xl w-full bg-stone-900 text-stone-300 border-none shadow-lg p-4">
+        <Calendar mode="single" selected={dateOne} onSelect={onDateSelect} />
+      </div>
+    </motion.div>
 
                    
             <motion.div
