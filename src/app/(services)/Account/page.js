@@ -13,12 +13,15 @@ import { motion } from "framer-motion";
 import Logout from "@/components/Logout"
 import { MdCancel } from "react-icons/md";
 import Form from "@/components/Form"
+import PaymentButton from '@/components/PaymentButton';
+import { Button } from 'react-day-picker';
 
 
 const page = () => {
   const [user,setuser]=useState('')
   const [showPopup, setShowPopup] = useState(false);
   const [show, setShow] = useState(false);
+  const [showing, setShowing] = useState(false);
 
   useEffect(()=>{
     const fetchdata =async()=>{
@@ -30,6 +33,14 @@ const page = () => {
     }
     fetchdata()
   },[])
+
+  useEffect(() => {
+    if (localStorage.getItem("paymentSuccess")) {
+      setShowing(false);
+      localStorage.removeItem("paymentSuccess");
+    }
+  }, []);
+  
   return (
     <div className='w-full h-screen bg-stone-900 text-stone-300 px-5 py-5'>
         <div className='   text-3xl'>
@@ -120,13 +131,33 @@ const page = () => {
         </div>
         </div>
 
-        <div className='w-full bg-stone-800 p-5 rounded-xl'>
-            <h1 className='text-stone-400 text-center text-sm'>"Help us improve! Let us know if you like our service by sharing your feedback. Your opinion matters!"</h1>
-            <form className='py-3 space-y-4'>
-            <button
-            className='w-full py-3 text-center bg-stone-400 text-stone-900 rounded-lg'> Support us
-            </button> 
-            </form>
+        <div className='w-full bg-stone-800 p-5 rounded-xl space-y-5'>
+            <h1 className='text-stone-400 text-center text-sm mb-2'>"Help us improve! Let us know if you like our service by sharing your feedback. Your opinion matters!"</h1>
+           
+              <button 
+                onClick={()=>{setShowing(true)}}
+              className='w-full py-2 text-center bg-stone-400 rounded-lg font-semibold'>Subscribe </button>
+              {showing && (
+           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
+           <motion.div
+             initial={{ opacity: 0, scale: 0.8, y: -50 }}
+             animate={{ opacity: 1, scale: 1, y: 0 }}
+             exit={{ opacity: 0, scale: 0.8, y: -50 }}
+             transition={{ duration: 0.3, ease: "easeInOut" }}
+             className="bg-stone-800 p-6 rounded-xl shadow-lg text-center">
+               <div className="w-full flex justify-between items-center">
+        <h2 className="text-lg font-semibold mb-4 text-stone-400">Support Us</h2>
+        <button onClick={() => setShowing(false)} className="">
+        < MdCancel/>
+               </button>
+       
+        </div>
+               <PaymentButton/>
+           </motion.div>
+         </div>
+        )}
+           
+            
             </div>
         </div>
 
