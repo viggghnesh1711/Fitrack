@@ -24,7 +24,7 @@ export async function POST(req) {
     await resend.emails.send({
         from: "no-reply@fittrack.fun", // Must be a verified email on Resend
         to: userEmailCookie.value, // User email from frontend
-        subject: "Thank You for Your Support! 💙",
+        subject: "Thank You for Your Support!",
         html: `
           <div style="
             max-width: 500px;
@@ -36,7 +36,7 @@ export async function POST(req) {
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
           ">
-            <h2 style="color: #2d8cf0; font-size: 24px;">🎉 Thank You for Supporting FitTrack! 🎉</h2>
+            <h2 style="color: #e6b753; font-size: 24px;">🎉 Thank You for Supporting FitTrack! 🎉</h2>
             
             <p style="color: #333; font-size: 16px; line-height: 1.5;">
               Your generous contribution helps us improve and grow.  
@@ -55,7 +55,7 @@ export async function POST(req) {
               display: inline-block;
               margin-top: 15px;
               padding: 10px 20px;
-              background: #2d8cf0;
+              background: #e6b753;
               color: #fff;
               text-decoration: none;
               font-weight: bold;
