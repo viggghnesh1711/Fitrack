@@ -1,122 +1,96 @@
-"use client"
-import { AsyncCallbackSet } from 'next/dist/server/lib/async-callback-set';
-import Link from 'next/link'
-import React, { useState } from 'react'
-import { FaUserAlt } from "react-icons/fa";
-import { IoIosArrowForward } from "react-icons/io";
-import { IoNotifications } from "react-icons/io5";
-import { IoLogOutSharp } from "react-icons/io5";
-import { MdDelete } from "react-icons/md";
+"use client";
+import { useState } from "react";
 import { RiFeedbackFill } from "react-icons/ri";
+import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
+import { MdPrivacyTip, MdCopyright } from "react-icons/md";
 import { motion } from "framer-motion";
-import Delete from "@/components/Delete"
-import Logout from "@/components/Logout"
-import { MdCancel } from "react-icons/md";
 
-const Settings = () => {
-    const [showPopup, setShowPopup] = useState(false);
-    const [show, setShow] = useState(false);
+export default function SettingsPage() {
+  const [openSection, setOpenSection] = useState("feedback");
+
+  const toggleSection = (section) => {
+    setOpenSection(openSection === section ? null : section);
+  };
+
+  const handleFeedbackClick = () => {
+    window.location.href = "https://wa.me/918850192746";
+  };
 
   return (
-    <div className='w-full py-10 '>
-        <h1 className='text-stone-500 text-sm '>GENERAL</h1>
-        <div className='w-full py-5 space-y-3'>
-            <Link href='/Account' className='text-stone-400 py-2 flex justify-between items-center'>
-            <div className='flex gap-5 items-center'>
-            <FaUserAlt className='text-lg'/>
-            <h1 className='text-lg'> Account</h1>
-            </div>
-            <IoIosArrowForward className='text-lg'/>
-            </Link>
+    <div className="w-full py-5 space-y-3">
+      <h1 className="pt-5 text-stone-500 text-xs">SETTINGS</h1>
 
-            <Link href='/Notifications' className='text-stone-400 py-2 flex justify-between items-center'>
-            <div className='flex gap-5 items-center'>
-            < IoNotifications className='text-xl'/>
-            <h1 className='text-lg'> Notifications</h1>
-            </div>
-            <IoIosArrowForward className='text-lg'/>
-            </Link>
-
-            <Link 
-            onClick={()=>{setShowPopup(true)}}
-            href='#' className='text-stone-400 py-2 flex justify-between items-center'>
-            <div className='flex gap-5 items-center'>
-            <IoLogOutSharp className='text-xl'/>
-            <h1 className='text-lg'> Log out</h1>
-            </div>
-            <IoIosArrowForward className='text-lg'/>
-            </Link>
-
-            {showPopup && (
-           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 mx-5">
-           <motion.div
-             initial={{ opacity: 0, scale: 0.8, y: -50 }}
-             animate={{ opacity: 1, scale: 1, y: 0 }}
-             exit={{ opacity: 0, scale: 0.8, y: -50 }}
-             transition={{ duration: 0.3, ease: "easeInOut" }}
-             className="bg-stone-800 p-6 rounded-xl shadow-lg text-center"
-           >
-             <h2 className="text-lg font-semibold mb-4 text-stone-400">Confirm Logout</h2>
-             <p className="text-stone-500 mb-4">
-               Are you sure you want to log out? Please confirm if you want to logout.
-             </p>
-             <div className="flex justify-center gap-4">
-               <button onClick={() => setShowPopup(false)} className="px-4 py-2 bg-stone-400 rounded-lg">
-                 Cancel
-               </button>
-              <Logout/>
-             </div>
-           </motion.div>
-         </div>
-        )}
-
-            <Link 
-            onClick={()=>{setShow(true)}}
-            href='' className='text-stone-400 py-2 flex justify-between items-center'>
-            <div className='flex gap-5 items-center'>
-            <MdDelete className='text-xl'/>
-            <h1 className='text-lg'> Delete</h1>
-            </div>
-            <IoIosArrowForward className='text-lg'/>
-            </Link>
-            {show && (
-           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 mx-5">
-           <motion.div
-             initial={{ opacity: 0, scale: 0.8, y: -50 }}
-             animate={{ opacity: 1, scale: 1, y: 0 }}
-             exit={{ opacity: 0, scale: 0.8, y: -50 }}
-             transition={{ duration: 0.3, ease: "easeInOut" }}
-             className="bg-stone-800 p-6 rounded-xl shadow-lg text-center"
-           >
-            <div className='w-full flex justify-between items-center'>
-            <h2 className="text-lg font-semibold mb-4 text-stone-400">Confirm Delete</h2>
-            <button onClick={() => setShow(false)} className="">
-                < MdCancel className='text-2xl text-stone-300'/>
-               </button>
-            </div>
-            <Delete/>
-           
-           </motion.div>
-         </div>
-        )}
-
+      {/* Terms & Conditions */}
+      <div onClick={() => toggleSection("terms")} className="cursor-pointer">
+        <div className="text-stone-400 py-2 flex justify-between items-center">
+          <div className="flex gap-5 items-center">
+            <RiFeedbackFill className="text-sm" />
+            <h1 className="text-lg">Terms & Conditions</h1>
+          </div>
+          {openSection === "terms" ? <IoIosArrowDown /> : <IoIosArrowForward />}
         </div>
-       
-        <h1 className='text-stone-500 text-sm '>SUPPORT</h1>
-        <div className='w-full py-5 space-y-3'>
-            <Link href='' className='text-stone-400 py-2 flex justify-between items-center'>
-            <div className='flex gap-5 items-center'>
-            <RiFeedbackFill className='text-lg'/>
-            <h1 className='text-xl'> Feedback</h1>
-            </div>
-            <IoIosArrowForward className='text-lg'/>
-            </Link>
-            
-         
-           
+        {openSection === "terms" && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 bg-stone-800 rounded-lg">
+            <p className="text-stone-400 text-sm">Review our terms and conditions for using our services. By accessing or using our platform, you agree to be bound by our policies, including user conduct guidelines, intellectual property rights, and liability limitations.</p>
+          </motion.div>
+        )}
+      </div>
+
+      {/* Privacy Policy */}
+      <div onClick={() => toggleSection("privacy")} className="cursor-pointer">
+        <div className="text-stone-400 py-2 flex justify-between items-center">
+          <div className="flex gap-5 items-center">
+            <MdPrivacyTip className="text-sm" />
+            <h1 className="text-lg">Privacy Policy</h1>
+          </div>
+          {openSection === "privacy" ? <IoIosArrowDown /> : <IoIosArrowForward />}
         </div>
+        {openSection === "privacy" && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 bg-stone-800 rounded-lg">
+            <p className="text-stone-400 text-sm">Learn how we protect and use your personal information. We are committed to ensuring your privacy and safeguarding any data shared with us, in compliance with global data protection regulations.</p>
+          </motion.div>
+        )}
+      </div>
+
+      {/* Copyright Notice */}
+      <div onClick={() => toggleSection("copyright")} className="cursor-pointer">
+        <div className="text-stone-400 py-2 flex justify-between items-center">
+          <div className="flex gap-5 items-center">
+            <MdCopyright className="text-sm" />
+            <h1 className="text-lg">Copyright Notice</h1>
+          </div>
+          {openSection === "copyright" ? <IoIosArrowDown /> : <IoIosArrowForward />}
+        </div>
+        {openSection === "copyright" && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 bg-stone-800 rounded-lg">
+            <p className="text-stone-400 text-sm">All rights reserved. Unauthorized use, reproduction, or distribution of our content without prior permission is strictly prohibited.
+              @vighneshkachare0059@gmail.com
+            </p>
+          </motion.div>
+        )}
+      </div>
+
+      {/* Feedback Section */}
+      <div onClick={() => toggleSection("feedback")} className="cursor-pointer">
+        <div className="text-stone-400 py-2 flex justify-between items-center">
+          <div className="flex gap-5 items-center">
+            <RiFeedbackFill className="text-sm" />
+            <h1 className="text-lg">Feedback</h1>
+          </div>
+          {openSection === "feedback" ? <IoIosArrowDown /> : <IoIosArrowForward />}
+        </div>
+        {openSection === "feedback" && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 bg-stone-800 rounded-lg">
+            <p className="text-stone-400 text-sm">For feedback, please contact us via WhatsApp.</p>
+            <button 
+              onClick={handleFeedbackClick} 
+              className="mt-2 px-4 py-2 bg-green-400 text-white rounded-md hover:bg-green-600 text-sm"
+            >
+              Contact on WhatsApp
+            </button>
+          </motion.div>
+        )}
+      </div>
     </div>
-  )
+  );
 }
-
-export default Settings
