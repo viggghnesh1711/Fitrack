@@ -138,7 +138,7 @@ const page = () => {
 
         <p className="text-center text-stone-400 mt-8">
           Already have an account?{' '}
-          <a href="" className="text-stone-200 hover:underline">
+          <a href="/Sign-In" className="text-stone-200 hover:underline">
             Log in
           </a>
         </p>
