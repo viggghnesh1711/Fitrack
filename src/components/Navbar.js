@@ -33,7 +33,7 @@ const Navbar = () => {
   }, []);  //
   
   return (
-    <nav className="w-full flex items-center justify-between">
+    <nav className="sm:hidden w-full flex items-center justify-between">
       <div>
         <p className="text-lg text-stone-500 font-semibold">
           Welcome<br></br> back, <span className="text-stone-300">{username}</span> 👋

@@ -6,7 +6,7 @@ import Chatbot from '@/components/Chatbot';
 
 const page = () => {
   return (
-    <div className='bg-stone-950 px-5 py-5 w-full min-h-screen overflow-x-hidden'>
+    <div className='bg-stone-950 px-5 py-5 w-full min-h-screen overflow-x-hidden sm:pl-96 sm:pr-20'>
         <Navbar/>
         <Chatbot/>
 

@@ -23,19 +23,19 @@ function Calendar({ className, classNames, ...props }) {
         nav_button_previous: "left-2",
         nav_button_next: "right-2",
         table: "w-full border-collapse",
-        head_row: "grid grid-cols-7 w-full",
+        head_row: "grid grid-cols-7 w-full  sm:pr-8",
         head_cell:
-          "text-stone-500 font-normal text-xs dark:text-stone-400 text-center",
-        row: "grid grid-cols-7 gap-1 w-full",
+          "text-stone-500 font-normal text-xs dark:text-stone-400 text-center sm:text-sm",
+        row: "grid grid-cols-7 gap-1 w-full sm:pl-10 ",
         cell: cn(
-          "relative p-0 text-center text-sm w-full",
+          "relative p-0 text-center text-sm w-full sm:text-base",
           props.mode === "range"
             ? "[&:has(>.day-range-end)]:rounded-r-md [&:has(>.day-range-start)]:rounded-l-md first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md"
             : "[&:has([aria-selected])]:rounded-md"
         ),
         day: cn(
           buttonVariants({ variant: "ghost" }),
-          "h-9 w-9 flex items-center justify-center text-sm"
+          "h-9 w-9 flex items-center justify-center text-sm sm:text-base sm:h-12 sm:w-16 sm:px-2"
         ),
         day_range_start: "day-range-start",
         day_range_end: "day-range-end",

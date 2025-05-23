@@ -69,7 +69,7 @@ const Page = () => {
   }
 
   return (
-    <div className="w-full h-screen px-8 pt-16 bg-stone-900 relative overflow-y-hidden ">
+    <div className="w-full h-screen px-8 pt-16 bg-stone-900 relative overflow-y-hidden sm:px-20">
       <Toaster/>
       <div className=" flex flex-col gap-2">
         <h2 className="text-2xl font-bold text-stone-200 mb-1 tracking-wide">
@@ -129,27 +129,25 @@ const Page = () => {
               </div>
             )}
 
-
             {currentInputIndex === 2 && (
-              <div className="h-full w-full flex flex-col gap-16">
+  <div className="h-full w-full flex flex-col gap-16">
                 <div className="text-stone-300 w-4/5 tracking-wider">
-                  <h1> What is your height? </h1>
+                  <h1> What is your Height? </h1>
                 </div>
-                <div className="w-full flex  flex-row-reverseitems-center justify-between py-10 ">
-                
-                    <input
-                      type="range"
-                      min="50"
-                      max="250"
-                      value={inputValues[2]}
-                      onChange={(e) => {
-                        const updatedValues = [...inputValues];
-                        updatedValues[2] = e.target.value;
-                        setInputValues(updatedValues);
-                      }}
-                      className="w-full h-full slider-thumb text-4xl rounded-2xl bg-stone-700 accent-stone-600 rotate-90 absolute bottom-0 left-1/2 transform -translate-x-1/2"
-                    />
-                    <span className="text-stone-200 text-4xl">{inputValues[2]} cm</span>
+                <div className="flex flex-col items-center gap-6">
+                  <span className="text-stone-200 text-4xl">{inputValues[2]} Cm</span>
+                  <input
+                    type="range"
+                    min="20"
+                    max="230"
+                    value={inputValues[2]}
+                    onChange={(e) => {
+                      const updatedValues = [...inputValues];
+                      updatedValues[2] = e.target.value;
+                      setInputValues(updatedValues);
+                    }}
+                    className="w-full slider-thumb text-4xl rounded-2xl bg-stone-700 accent-stone-600"
+                  />
                 </div>
               </div>
             )}

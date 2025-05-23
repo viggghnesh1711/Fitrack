@@ -108,7 +108,7 @@ export default function Component() {
 
       <CardContent className="px-2 sm:px-6">
   {filteredData && filteredData.length > 0 ? (
-    <ChartContainer config={chartConfig} className="aspect-auto h-[150px] w-full">
+    <ChartContainer config={chartConfig} className="aspect-auto h-[150px] w-full sm:h-[200px]">
       <AreaChart data={filteredData}>
         <defs>
           <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">

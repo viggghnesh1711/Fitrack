@@ -44,7 +44,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="bg-stone-950 min-h-screen w-full px-5 py-5 flex flex-col gap-6 relative pb-32">
+      <div className="bg-stone-950 min-h-screen w-full px-5 py-5 flex flex-col gap-6 relative pb-32 sm:pl-96 sm:pr-20">
         
         {/* Navbar */}
         <motion.div
@@ -63,7 +63,7 @@ const Page = () => {
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.2 }}
-          className="shadow-lg shadow-stone-900 h-[250px] w-full rounded-2xl bg-stone-900" // Set specific height for the chart
+          className="shadow-lg shadow-stone-900 h-[250px] sm:h-[300px] w-full rounded-2xl bg-stone-900" // Set specific height for the chart
         >
           <Chart />
         </motion.div>
@@ -90,13 +90,6 @@ const Page = () => {
     </motion.div>
 
                    
-            <motion.div
-              variants={itemVariants}
-              className="shadow-lg shadow-stone-900 mt-5 w-full bg-stone-900 rounded-2xl"
-            >
-              
-                <Calorie/>
-            </motion.div>
            
         </motion.div>
 

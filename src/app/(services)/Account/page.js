@@ -17,6 +17,7 @@ import PaymentButton from '@/components/PaymentButton';
 import { Button } from 'react-day-picker';
 import { Delius } from 'next/font/google';
 import Delete from "@/components/Delete"
+import toast, { Toaster } from 'react-hot-toast';
 
 const page = () => {
   const [user,setuser]=useState('')
@@ -24,6 +25,13 @@ const page = () => {
   const [show, setShow] = useState(false);
   const [showing, setShowing] = useState(false);
   const [del, setdel] = useState(false);
+
+  const showToast = () => {
+    toast("No notifications yet", {
+      icon: "🔕",
+      duration: 3000,
+    });
+  };
 
   useEffect(()=>{
     const fetchdata =async()=>{
@@ -44,14 +52,16 @@ const page = () => {
   }, []);
 
   return (
-    <div className='w-full h-screen bg-stone-900 text-stone-300 px-5 py-5'>
+    <div className='w-full h-screen bg-stone-900 text-stone-300 px-5 py-5 sm:px-20'>
+      <Toaster position="top-center" reverseOrder={false} />
         <div className='   text-3xl'>
         <Link href='/Home' className='flex items-center gap-2'>
         <IoIosArrowBack/>
        <h1 className='text-base font-bold'>Go Back</h1></Link>
         </div>
-        <div className='w-full h-full '>
-        <div className='w-full pt-10 py-5 flex flex-col gap-3 justify-center items-center'>
+        <div className='w-full h-full sm:flex  sm:flex-row-reverse sm:gap-20 sm:pt-20'>
+
+        <div className='w-full pt-10 py-5 flex flex-col gap-3 justify-center items-center sm:hidden'>
         <Image 
           src="/images/barbell.png"  // Path to the image (could be local or external URL)
           alt="Description of the image"  // Alt text for accessibility
@@ -71,8 +81,8 @@ const page = () => {
             onClick={()=>{setShow(true)}}
             href='' className='text-stone-400 py-2 flex justify-between items-center'>
             <div className='flex gap-5 items-center'>
-            <FaUserAlt className='text-lg'/>
-            <h1 className='text-lg'> Edit Profile</h1>
+            <FaUserAlt className='text-lg sm:text-xl'/>
+            <h1 className='text-lg sm:text-xl'> Edit Profile</h1>
             </div>
             <IoIosArrowForward className='text-lg'/>
             </Link>
@@ -99,20 +109,23 @@ const page = () => {
          </div>
         )}
 
-            <Link href='/Notifications' className='text-stone-400 py-2 flex justify-between items-center'>
-            <div className='flex gap-5 items-center'>
-            < IoNotifications className='text-xl'/>
-            <h1 className='text-lg'> Notifications</h1>
-            </div>
-            <IoIosArrowForward className='text-lg'/>
-            </Link>
+            <div
+      onClick={showToast}
+      className="text-stone-400 py-2 flex justify-between items-center cursor-pointer"
+    >
+      <div className="flex gap-5 items-center">
+        <IoNotifications className="text-xl sm:text-xl" />
+        <h1 className="text-lg sm:text-xl">Notifications</h1>
+      </div>
+      <IoIosArrowForward className="text-lg" />
+    </div>
             
             <Link 
             onClick={()=>{setShowPopup(true)}}
             href='#' className='text-stone-400 py-2 flex justify-between items-center'>
             <div className='flex gap-5 items-center'>
-            <IoLogOutSharp className='text-xl'/>
-            <h1 className='text-lg'> Log out</h1>
+            <IoLogOutSharp className='text-xl sm:text-xl'/>
+            <h1 className='text-lg sm:text-xl'> Log out</h1>
             </div>
             <IoIosArrowForward className='text-lg'/>
             </Link>
@@ -143,8 +156,8 @@ const page = () => {
             onClick={()=>{setdel(true)}}
             href='' className='text-stone-400 py-2 flex justify-between items-center'>
             <div className='flex gap-5 items-center'>
-            <MdDelete className='text-xl'/>
-            <h1 className='text-lg'> Delete</h1>
+            <MdDelete className='text-xl sm:text-xl'/>
+            <h1 className='text-lg sm:text-xl'> Delete</h1>
             </div>
             <IoIosArrowForward className='text-lg'/>
             </Link>
@@ -172,7 +185,7 @@ const page = () => {
         </div>
         </div>
 
-        <div className='w-full bg-stone-800 p-5 rounded-xl space-y-5'>
+        <div className='w-full bg-stone-800 p-5 rounded-xl space-y-5 sm:hidden'>
             <h1 className='text-stone-400 text-center text-sm mb-2'>"Help us improve! Let us know if you like our service by sharing your feedback. Your opinion matters!"</h1>
            
               <button 
@@ -200,6 +213,50 @@ const page = () => {
            
             
             </div>
+{/* EXTRA */}
+        <div>
+
+        <div className='w-full pt-10 py-5 flex-col gap-3 justify-center items-center sm:flex sm:flex-col hidden'>
+        <Image 
+          src="/images/barbell.png"  // Path to the image (could be local or external URL)
+          alt="Description of the image"  // Alt text for accessibility
+          width={80}  // Width of the image (in pixels)
+          height={80}  // Height of the image (in pixels)
+        />
+        <div className='w-full flex justify-center items-center gap-1'>
+        <h1 className='text-sm text-stone-400 font-semibold sm:text-lg'>User :</h1>
+        <h1 className='text-lg text-stone-300 font-semibold sm:text-xl'>{user}</h1>
+        </div>
+        </div>
+
+         <div className='w-full bg-stone-800 p-5 rounded-xl space-y-5 sm:flex sm:flex-col hidden '>
+            <h1 className='text-stone-400 text-center text-sm mb-2 sm:text-lg'>"Help us improve! Let us know if you like our service by sharing your feedback. Your opinion matters!"</h1>
+           
+              <button 
+                onClick={()=>{setShowing(true)}}
+              className='w-full py-2 text-center bg-stone-400 rounded-lg font-semibold'>Subscribe </button>
+              {showing && (
+           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
+           <motion.div
+             initial={{ opacity: 0, scale: 0.8, y: -50 }}
+             animate={{ opacity: 1, scale: 1, y: 0 }}
+             exit={{ opacity: 0, scale: 0.8, y: -50 }}
+             transition={{ duration: 0.3, ease: "easeInOut" }}
+             className="bg-stone-800 p-6 rounded-xl shadow-lg text-center">
+               <div className="w-full flex justify-between items-center">
+        <h2 className="text-lg font-semibold mb-4 text-stone-400">Support Us</h2>
+        <button onClick={() => setShowing(false)} className="">
+        < MdCancel/>
+               </button>
+       
+        </div>
+               <PaymentButton/>
+           </motion.div>
+         </div>
+        )}
+            </div>
+             {/* //EXTRA// */}
+  </div>    
         </div>
 
       </div>

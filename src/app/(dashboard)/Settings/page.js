@@ -5,7 +5,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='bg-stone-950 px-5 py-5 w-full min-h-screen'>
+    <div className='bg-stone-950 px-5 py-5 w-full min-h-screen sm:pl-96 sm:pr-20'>
         <Navbar/>
         <div className='h-full w-full flex justify-center items-center '>
         <Settings/>

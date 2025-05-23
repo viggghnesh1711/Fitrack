@@ -7,7 +7,7 @@ import React from 'react'
 const page = ({params}) => {
   const {date} = params
   return (
-    <div className='bg-stone-950 px-5 py-5 w-full min-h-screen'>
+    <div className='bg-stone-950 px-5 py-5 w-full min-h-screen sm:pl-96 sm:pr-20 '>
        
         <div className='h-full w-full flex flex-col justify-center items-center py-5'>
         <WeeklyCalendar  params={{ date: date }}/>

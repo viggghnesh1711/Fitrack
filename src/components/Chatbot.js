@@ -34,31 +34,31 @@ const Chatbot = () => {
   return (
     <div className='w-full h-96 py-5'>
       <div className="py-10 flex items-center space-x-2 mt-auto">
-        <form onSubmit={handleSend} className='flex items-center space-x-2'>
+        <form onSubmit={handleSend} className='flex items-center space-x-2 sm:space-x-20 sm:w-full'>
           <input
             type="text"
             value={userPrompt}
             onChange={(e) => setUserInput(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg bg-stone-700 text-stone-100 border border-stone-600 focus:ring-2 focus:ring-stone-500 focus:outline-none placeholder-stone-500"
+            className="w-full sm:w-full px-4 py-3 rounded-lg sm:text-lg bg-stone-700 text-stone-100 border border-stone-600 focus:ring-2 focus:ring-stone-500 focus:outline-none placeholder-stone-500"
             placeholder="Type your question..."
           />
           <button
             type='submit'
-            className="bg-stone-200 text-stone-900 font-bold py-3 px-8 rounded-full shadow-lg shadow-slate-500 ml-auto"
+            className="bg-stone-200 text-stone-900 font-bold py-3 px-8 rounded-full shadow-lg shadow-slate-500 ml-auto sm:text-lg"
             disabled={loading} // Disable the button when loading
           >
             {loading ? <ImSpinner2 className="animate-spin" /> : 'Ask'} {/* Show spinner when loading */}
           </button>
         </form>
       </div>
-      <div className='flex flex-col gap-5'>
+      <div className='flex flex-col gap-5 '>
         <div>
-          <h1 className='text-stone-400 text-lg'>
+          <h1 className='text-stone-400 text-lg sm:text-xl'>
             {user || userPrompt || "Hey! Need help with your fitness? Ask me anything! 💪😊"}
           </h1>
         </div>
         <div>
-          <h1 className='text-stone-500 h-64 w-full text-base overflow-y-scroll'>
+          <h1 className='text-stone-500 h-64 w-full text-base overflow-y-scroll sm:text-xl  sm:overflow-hidden'>
             {loading ? ( // Show loading spinner while waiting for response
               <div className='w-full h-full flex justify-center items-center'>
                 <ImSpinner2 className="animate-spin" style={{ fontSize: '50px', color: 'gray' }} />
